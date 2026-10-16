@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ACHIEVEMENTS, OPEN_TO, PROFILE, PROJECTS, SKILLS, type Project } from "@/lib/data";
+import {
+  ACHIEVEMENTS,
+  EXPERIENCE,
+  OPEN_TO,
+  PROFILE,
+  PROJECTS,
+  SKILLS,
+  type Project,
+} from "@/lib/data";
 import type { GithubStats } from "@/lib/github";
 import { Counter, Magnetic, Reveal, RevealWords, SectionHeading, TiltCard, Typewriter } from "./ui";
 
@@ -234,7 +242,11 @@ export function About() {
                   worked across <strong className="text-fg">Go</strong>,{" "}
                   <strong className="text-fg">FastAPI</strong> and{" "}
                   <strong className="text-fg">PostgreSQL + pgvector</strong> to put a RAG assistant
-                  on top of a real library and archive — deployed, not demoed.
+                  on top of a real library and archive — deployed, not demoed. CareerPilot goes the
+                  other way: rather than trusting a model to write your CV, it runs{" "}
+                  <strong className="text-fg">every generated line through a five-layer
+                  groundedness gate</strong>{" "}
+                  and fails the build on a single invented citation.
                 </p>
                 <p>
                   Outside coursework I compete: CTFs, datathons and AI hackathons. It keeps me fast
@@ -502,13 +514,63 @@ function FeaturedProject({ project, index }: { project: Project; index: number }
 }
 
 /* ==================================================================
+   Experience
+   ================================================================== */
+export function Experience() {
+  return (
+    <section id="experience" className="relative z-10 py-20 md:py-28">
+      <div className="shell">
+        <SectionHeading kicker="03 — Experience" title="Beyond the projects." />
+
+        <div className="space-y-5">
+          {EXPERIENCE.map((e, i) => (
+            <Reveal key={`${e.org}-${e.role}`} delay={i * 0.08}>
+              <div className="glass card-hover rounded-2xl p-6 sm:p-7">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h3 className="text-lg font-semibold tracking-tight">
+                    {e.role},{" "}
+                    <span className="text-[var(--accent)]">{e.org}</span>
+                    {e.link && (
+                      <a
+                        href={e.link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-fg-dim ml-3 font-mono text-[11px] underline decoration-dotted underline-offset-4 transition-colors hover:text-fg"
+                      >
+                        {e.link.label}
+                      </a>
+                    )}
+                  </h3>
+                  <span className="text-fg-dim font-mono text-[11px]">{e.period}</span>
+                </div>
+                <ul className="text-fg-muted mt-4 space-y-2.5 text-sm leading-relaxed">
+                  {e.points.map((p) => (
+                    <li key={p} className="flex gap-3">
+                      <span
+                        className="mt-[9px] size-1 shrink-0 rounded-full bg-[var(--accent)]"
+                        aria-hidden
+                      />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ==================================================================
    Achievements
    ================================================================== */
 export function Achievements() {
   return (
     <section id="achievements" className="relative z-10 py-20 md:py-28">
       <div className="shell">
-        <SectionHeading kicker="03 — Achievements" title="Competing keeps me sharp." />
+        <SectionHeading kicker="04 — Achievements" title="Competing keeps me sharp." />
 
         <ol className="relative space-y-5 border-l border-[var(--border)] pl-6 sm:pl-9">
           {ACHIEVEMENTS.map((a, i) => (
@@ -533,7 +595,7 @@ export function Achievements() {
 
         <div className="mt-10 grid gap-4 sm:grid-cols-3">
           {[
-            { title: "GitHub Starstruck", sub: "Earned from 36★ on Bornomala" },
+            { title: "GitHub Starstruck", sub: "Earned from 37★ on Bornomala" },
             {
               title: `${ACHIEVEMENTS.length} national honours`,
               sub: "Hackathons, datathons & CTFs since 2024",
@@ -575,7 +637,7 @@ export function Skills({ stats }: { stats: GithubStats }) {
   return (
     <section id="skills" className="relative z-10 py-20 md:py-28">
       <div className="shell">
-        <SectionHeading kicker="04 — Toolkit" title="What I reach for." />
+        <SectionHeading kicker="05 — Toolkit" title="What I reach for." />
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {SKILLS.map((group, i) => (

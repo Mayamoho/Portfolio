@@ -98,6 +98,7 @@ export function ScrollProgress() {
 const SECTIONS = [
   { id: "about", label: "About" },
   { id: "work", label: "Work" },
+  { id: "experience", label: "Experience" },
   { id: "achievements", label: "Achievements" },
   { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },

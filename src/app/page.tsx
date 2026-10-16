@@ -2,6 +2,7 @@ import {
   About,
   Achievements,
   Contact,
+  Experience,
   Footer,
   Hero,
   Skills,
@@ -21,6 +22,7 @@ export default async function Home() {
       <Stats stats={stats} />
       <About />
       <Work />
+      <Experience />
       <Achievements />
       <Skills stats={stats} />
       <Contact />
