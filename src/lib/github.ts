@@ -11,11 +11,11 @@ export type GithubStats = {
 
 /** Values used when the GitHub API is unreachable or rate-limited. */
 const FALLBACK: GithubStats = {
-  totalStars: 42,
-  publicRepos: 15,
-  followers: 11,
-  topLanguages: ["JavaScript", "TypeScript", "Python", "Java", "C++"],
-  bornomalaStars: 36,
+  totalStars: 46,
+  publicRepos: 24,
+  followers: 17,
+  topLanguages: ["TypeScript", "Python", "JavaScript", "HTML", "Java", "C++"],
+  bornomalaStars: 37,
   live: false,
 };
 
